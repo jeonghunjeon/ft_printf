@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeonjeon <jeonjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeonjeon <jeonjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:15:24 by jeonjeon          #+#    #+#             */
-/*   Updated: 2022/03/09 17:12:43 by jeonjeon         ###   ########.fr       */
+/*   Updated: 2022/03/17 22:15:23 by jeonjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,27 @@ void	ft_putnbr_fd(int n, int fd)
 	ft_putchar_fd((b + 48), fd);
 }
 
-int print_char(char ch)
+void	ft_putunbr_fd(unsigned int n, int fd)
 {
-	ft_putchar_fd(ch, 1);
+	int	a;
+	int	b;
+
+	if (fd < 0)
+		return ;
+	a = n / 10;
+	b = n % 10;
+	if (a > 9)
+		ft_putnbr_fd(a, fd);
+	else if (a == 0)
+		;
+	else
+		ft_putchar_fd((a + 48), fd);
+	ft_putchar_fd((b + 48), fd);
+}
+
+int print_char(va_list ap)
+{
+	ft_putchar_fd(va_arg(ap, int), 1);
 	return (1);
 }
 
@@ -94,11 +112,6 @@ int print_str(va_list ap)
 	return (ft_strlen(str));
 }
 
-int print_pointer(va_list ap)
-{
-	return (0);
-}
-
 int print_int(va_list ap)
 {
 	int	num;
@@ -115,12 +128,15 @@ int print_int(va_list ap)
 	return (count);
 }
 
-int print_uint(va_list ap)
+int	print_uint(unsigned int nb, char *base)
 {
-	return (0);
+	int	char_count;
+
+	char_count = 0;
+	if (nb > (unsigned int)ft_strlen(base) - 1)
+		char_count += print_uint(nb / ft_strlen(base), base);
+	ft_putchar_fd(base[nb % ft_strlen(base)], 1);
+	char_count++;
+	return (char_count);
 }
 
-int print_hex(va_list ap)
-{
-	return (0);
-}
