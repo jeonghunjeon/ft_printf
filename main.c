@@ -6,8 +6,7 @@ int	main(void)
 {
 	char	*str;
 
-	ft_printf("%d\n", ft_printf("%u\n", -90));
-	printf("%d\n", printf("%u\n", -90));
-	//printf("%lu\n", strlen("0123456789abcedf"));
+	ft_printf("%d\n", ft_printf("42 - 84 is %x\n", NULL));
+	printf("%d\n", printf("42 - 84 is %p\n", NULL));
 	return (0);
 }

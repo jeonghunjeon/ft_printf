@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeonjeon <jeonjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeonjeon <jeonjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 18:09:47 by jeonjeon          #+#    #+#             */
-/*   Updated: 2022/03/19 00:06:51 by jeonjeon         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:46:18 by jeonjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ int		ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 int		print_char(va_list ap);
 int		print_str(va_list ap);
-int		print_pointer(va_list ap);
+int		print_pointer(size_t nb, char *base);
 int		print_int(va_list ap);
-int		print_uint(unsigned int nb, char *base);
-int		print_hex(va_list ap);
-int		print_unint(va_list ap);
+int		print_num(unsigned int nb, char *base);
+size_t	ft_strlen(const char *s);
+void	ft_putstr_fd(char *s, int fd);
+int		ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
