@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeonjeon <jeonjeon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeonjeon <jeonjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:15:24 by jeonjeon          #+#    #+#             */
-/*   Updated: 2022/03/17 22:15:23 by jeonjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 00:09:00 by jeonjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-void	ft_putchar_fd(char c, int fd)
+int		ft_putchar_fd(char c, int fd)
 {
 	if (fd < 0)
-		return ;
+		return (0);
 	write(fd, &c, 1);
+	return (1);
 }
 
 void	ft_putnbr_fd(int n, int fd)
@@ -128,12 +129,28 @@ int print_int(va_list ap)
 	return (count);
 }
 
+int print_unint(va_list ap)
+{
+	unsigned int	num;
+	unsigned int	count;
+
+	num = va_arg(ap, unsigned int);
+	count = 0;
+	ft_putunbr_fd(num, 1);
+	while (num > 0)
+	{
+		num /= 10;
+		count++;
+	}
+	return (count);
+}
+
 int	print_uint(unsigned int nb, char *base)
 {
 	int	char_count;
 
 	char_count = 0;
-	if (nb > (unsigned int)ft_strlen(base) - 1)
+	if (nb >= (unsigned int)ft_strlen(base))
 		char_count += print_uint(nb / ft_strlen(base), base);
 	ft_putchar_fd(base[nb % ft_strlen(base)], 1);
 	char_count++;

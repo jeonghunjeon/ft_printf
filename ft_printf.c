@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeonjeon <jeonjeon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeonjeon <jeonjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 18:09:35 by jeonjeon          #+#    #+#             */
-/*   Updated: 2022/03/17 22:15:44 by jeonjeon         ###   ########.fr       */
+/*   Updated: 2022/03/19 00:06:23 by jeonjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,17 @@ int	description(va_list ap, const char desc)
 	else if (desc == 'p')
 	{
 		ft_putstr_fd("0x", 1);
-		count_ret = print_uint(va_arg(ap, unsigned int), "0123456789abcdef");
+		count_ret += 2;
+		count_ret += print_uint(va_arg(ap, unsigned int), "0123456789abcdef");
 	}
 	else if (desc == 'd' || desc == 'i')
 		count_ret = print_int(ap);
 	else if (desc == 'u')
-		count_ret = print_uint(va_arg(ap, unsigned int), "0123456789");
+		count_ret = print_unint(ap);
 	else if (desc == 'x' || desc == 'X')
 		count_ret = print_uint(va_arg(ap, unsigned int), "0123456789abcdef");
 	else if (desc == '%')
-	{
-		ft_putchar_fd('%', 1);
-		count_ret = 1;
-	}
+		count_ret = ft_putchar_fd('%', 1);
 	else
 		count_ret = 0;
 	return (count_ret);
