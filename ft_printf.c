@@ -6,7 +6,7 @@
 /*   By: jeonjeon <jeonjeon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 18:09:35 by jeonjeon          #+#    #+#             */
-/*   Updated: 2022/03/21 18:54:29 by jeonjeon         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:19:21 by jeonjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	description(va_list ap, const char desc)
 	else if (desc == 's')
 		count_ret = print_str(ap);
 	else if (desc == 'p')
-		count_ret += print_pointer(va_arg(ap, size_t), "0123456789abcdef");
+		count_ret = print_pointer(va_arg(ap, size_t), "0123456789abcdef");
 	else if (desc == 'd' || desc == 'i')
 		count_ret = print_int(ap);
 	else if (desc == 'u')
@@ -41,8 +41,8 @@ int	description(va_list ap, const char desc)
 int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	size_t	count_ret;
-	size_t	idx;
+	int		count_ret;
+	int		idx;
 
 	idx = 0;
 	count_ret = 0;
